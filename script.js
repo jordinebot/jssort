@@ -1,44 +1,39 @@
-var max_timestamp = 1420005600;
-
-var a = new Array();
+var a = new Array(10);
 
 for (var i=0; i<10; i++) {
 	a[i] = new Array(get_random_value(10), get_random_color(), get_random_date());
 } 
 
 // Funció d'ordenació
+
 Array.prototype.mysort = function() {
 	this.sort(function(a,b){
 		if (a[2] > b[2]) return  1;
-	    if (a[2] < b[2]) return -1;
-	    return 0;
+		if (a[2] < b[2]) return -1;
+		return 0;
 	});
 	return this;
 }
 
-$(document).ready(function(){
+// Main
+
+$(document).ready(function() {
+
 	$('#output').append('<h1>Before sort</h1><ol>');
 	for (var i=0; i < a.length; i++) {
 		$('#output').append('<li>' + a[i][2] + '</li>');
 	};
 	$('#output').append('</ol>');
-	$('#output').append('<h1>After sort</h1><ol>');
 
 	b = a.mysort();
-	
+
+	$('#output').append('<h1>After sort</h1><ol>');
 	for (var i=0; i < b.length; i++) {
 		$('#output').append('<li>' + b[i][2] + '</li>');
 	};
 	$('#output').append('</ol>');
+
 });
-
-
-
-
-
-
-
-
 
 // Funcions genèriques
 
@@ -47,12 +42,12 @@ function get_random_value(upper_limit) {
 }
 
 function get_random_color() {
-    var letters = '0123456789ABCDEF'.split('');
-    var color = '#';
-    for (var i = 0; i < 6; i++) {
-        color += letters[Math.round(Math.random() * 15)];
-    }
-    return color;
+	var letters = '0123456789ABCDEF'.split('');
+	var color = '#';
+	for (var i = 0; i < 6; i++) {
+		color += letters[Math.round(Math.random() * 15)];
+	}
+	return color;
 }
 
 function get_random_date() {
